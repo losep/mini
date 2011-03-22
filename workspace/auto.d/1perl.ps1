@@ -1,6 +1,6 @@
 $Env:XR_PERL_MODULE_DIR = $MyPlace['Env']['Workspace'] + '\perl\modules'
-$Env:Path = $MyPlace['Env']['Workspace'] + '\perl;' + $Env:Path
-$Env:nodosfilewarning = "yes"
+#$Env:Path = $MyPlace['Env']['Workspace'] + '\perl;' + $Env:Path
+#$Env:nodosfilewarning = "yes"
 
 function global:Run-Perl([string]$filepath, [String[]]$arguments) {
 	if(-not $filepath) {
@@ -8,7 +8,7 @@ function global:Run-Perl([string]$filepath, [String[]]$arguments) {
 		return
 	}
 	elseif(-not (Test-Path $filepath)) {
-		$filepath = (Get-Command $filepath).Definition
+		$filepath = $MyPlace['Env']['Workspace'] + '\perl' + $filepath 
 	}
 	"$filepath $arguments"
 	& "perl" $filepath $arguments

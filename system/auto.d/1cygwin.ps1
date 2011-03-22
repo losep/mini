@@ -50,7 +50,7 @@ function Cygwin-Init {
 		$Cygwin["Saved Path"] = $Env:Path
 	}
 	foreach($p in @("usr\local\bin","usr\bin","bin")) {
-		$Env:Path = $Cygwin["ROOT"] + "\" + $p + ";" + $Env:Path
+		$Env:Path = $Env:Path + ";" + $Cygwin["ROOT"] + "\" + $p
 	}
 }
 function Cygwin-Remove {
